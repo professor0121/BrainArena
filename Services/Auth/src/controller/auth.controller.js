@@ -43,3 +43,40 @@ export const me= async(req,res)=>{
     if(!user) return res.status(400).json({message:"not found"})
     return res.status(200).json({user:user})
 }
+
+export const update=async(req,res)=>{
+    try {
+        const { id } = req.params;
+        const { name, email } = req.body;
+
+        const [updated] = await User.update(
+            { name, email },
+            { where: { id } }
+        );
+
+        if (updated) {
+            res.send("User updated successfully");
+        } else {
+            res.status(404).send("User not found");
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error updating user");
+    }
+}
+
+export const deleteUser=async(req,res)=>{
+     try {
+        const { id } = req.params;
+        const deleted = await User.destroy({ where: { id } });
+
+        if (deleted) {
+            res.send("User deleted successfully");
+        } else {
+            res.status(404).send("User not found");
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error deleting user");
+    }
+}
