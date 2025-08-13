@@ -1,4 +1,5 @@
-import User from "../dao/user.dao.js";
+// import User from "../dao/user.dao.js";
+import User from '../model/user.model.js'
 import { hashPassword, comparePassword } from "../utils/password.util.js";
 import { generateToken } from "../utils/jwt.util.js";
 
@@ -35,3 +36,10 @@ export const login = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const me= async(req,res)=>{
+    const {email}=req.body;
+    const user=await User.findOne({where:{email}})
+    if(!user) return res.status(400).json({message:"not found"})
+    return res.status(200).json({user:user})
+}
