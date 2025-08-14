@@ -44,7 +44,7 @@ const svc = (target, rewriteFn) =>
 r.auth.use(svc('http://localhost:3000', (url) => url.replace(/^\/auth/, '')));
 
 // Questions → keep clean
-r.questions.use(svc('http://question-service:3002', (url) => url.replace(/^\/questions/, '')));
+r.questions.use(svc('http://localhost:3002', (url) => url.replace(/^\/questions/, '')));
 
 // Exams (admin) → map /exams → /admin
 r.examsAdmin.use(svc('http://localhost:3003', (url) => url.replace(/^\/exams/, '/admin')));

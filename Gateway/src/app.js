@@ -18,7 +18,8 @@ app.get('/health', (_, res) => res.json({ ok: true }));
 app.use('/auth', routes.auth);
 
 // Protected routes
-app.use('/questions', authGuard(['admin']), routes.questions);
+app.use('/questions', routes.questions);
+// app.use('/questions', authGuard(['admin']), routes.questions);
 app.use('/exams', routes.examsAdmin);
 // app.use('/exams', authGuard(['admin']), routes.examsAdmin);
 app.use('/exam', routes.examsStudent);
