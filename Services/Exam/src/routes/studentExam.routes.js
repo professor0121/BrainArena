@@ -1,4 +1,11 @@
 import { Router } from "express";
-const router=Router();
+import { getUpcomingExams, getExamDetails,getExam } from "../controller/studentExam.controller.js";
+
+
+const router = Router();
+
+router.get("/", getUpcomingExams);    // GET /student  → list all upcoming exams
+// router.get("/:id", getExamDetails);   // GET /student/:id → single exam details
+router.get("/:id",getExam)
 
 export default router;
