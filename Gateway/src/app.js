@@ -19,7 +19,8 @@ app.use('/auth', routes.auth);
 
 // Protected routes
 app.use('/questions', authGuard(['admin']), routes.questions);
-app.use('/exams', authGuard(['admin']), routes.examsAdmin);
+app.use('/exams', routes.examsAdmin);
+// app.use('/exams', authGuard(['admin']), routes.examsAdmin);
 app.use('/exam', authGuard(['student','admin']), routes.examsStudent);
 app.use('/submissions', authGuard(['student','admin']), routes.submissions);
 
