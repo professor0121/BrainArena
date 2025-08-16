@@ -24,7 +24,8 @@ app.use('/exams', routes.examsAdmin);
 // app.use('/exams', authGuard(['admin']), routes.examsAdmin);
 app.use('/exam', routes.examsStudent);
 // app.use('/exam', authGuard(['student','admin']), routes.examsStudent);
-app.use('/submissions', authGuard(['student','admin']), routes.submissions);
+app.use('/submissions', routes.submissions);
+// app.use('/submissions', authGuard(['student','admin']), routes.submissions);
 
 export default app;
 
