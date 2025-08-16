@@ -53,6 +53,6 @@ r.examsAdmin.use(svc('http://localhost:3003', (url) => url.replace(/^\/exams/, '
 r.examsStudent.use(svc('http://localhost:3003', (url) => url.replace(/^\/exam/, '/student')));
 
 // Submissions → keep clean
-r.submissions.use(svc('http://submission-service:3004', (url) => url.replace(/^\/submissions/, '')));
+r.submissions.use(svc('http://localhost:3004', (url) => url.replace(/^\/submissions/, '')));
 
 export default r;
