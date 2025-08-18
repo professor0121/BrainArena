@@ -1,0 +1,39 @@
+import {createAdminService,loginAdminService,getAdminService} from '../services/admin.service.js'
+
+export const register = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    // Call service with await
+    const user = await createAdminService({ name, email, password });
+
+    res.status(201).json({
+      success: true,
+      message: "Admin registered successfully",
+      user,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    console.log(email,password)
+    const { token, user } = await loginAdminService(email, password);
+
+    res.json({ token, user });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const me= async(req,res)=>{
+    const {email}=req.body;
+    const admin=await getAdminService(email);
+    if(!admin) return res.status(400).json({message:"not found"})
+    return res.status(200).json(admin)
+}
