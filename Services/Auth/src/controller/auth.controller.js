@@ -2,20 +2,25 @@
 import User from '../model/user.model.js'
 import { hashPassword, comparePassword } from "../utils/password.util.js";
 import { generateToken } from "../utils/jwt.util.js";
+import { createUser } from '../services/auth.service.js';
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
-    const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) return res.status(400).json({ message: "Email already exists" });
+    // Call service with await
+    const user = await createUser({ name, email, password });
 
-    const hashed = await hashPassword(password);
-    const newUser = await User.create({ name, email, password: hashed, role });
-
-    res.status(201).json({ message: "User registered successfully", user: newUser });
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      user,
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 

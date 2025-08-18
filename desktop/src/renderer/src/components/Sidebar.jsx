@@ -29,7 +29,6 @@ const Sidebar = ({ children }) => {
             to={item.link}
             className={`flex items-center gap-2 hover:bg-gray-700 p-2 rounded ${item.className}`}
           >
-            <span>{item.icon}</span>
             <span>{item.title}</span>
           </Link>
         ))}

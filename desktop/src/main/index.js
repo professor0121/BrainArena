@@ -4,6 +4,8 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import dotenv from 'dotenv'
 dotenv.config({ path: join(__dirname, '../../.env') })
+
+app.setName("My Desktop App"); // sets the name globally
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
