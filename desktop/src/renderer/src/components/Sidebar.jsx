@@ -11,9 +11,6 @@ const Sidebar = ({ children }) => {
     { className: "", link: "/orders", icon: "🛒", title: "Order" },
     { className: "", link: "/activity", icon: "📈", title: "Activity" },
     { className: "", link: "/users", icon: "👤", title: "User" },
-    { className: "", link: "/tiffin", icon: "🍱", title: "Tiffin" },
-    { className: "", link: "/meals", icon: "🍽️", title: "Meal" },
-    { className: "", link: "/staff", icon: "🧑‍🍳", title: "Staff" },
     { className: "", link: "/settings", icon: "⚙️", title: "Settings" },
   ]
 
