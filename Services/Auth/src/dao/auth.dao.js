@@ -25,7 +25,7 @@ export const getUserById = async (id) => {
  * Find user by email
  */
 export const getUserByEmail = async (email) => {
-  return await User.findOne({ email });
+  return await User.findOne({ email }).lean();
 };
 
 /**
