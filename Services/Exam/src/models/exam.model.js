@@ -1,29 +1,35 @@
-import { DataTypes } from "sequelize";
-import {sequelize} from "../config/db.js";
+import mongoose from 'mongoose';
 
-const Exam = sequelize.define("Exam", {
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false
+const examSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true, 
+      trim: true
+    },
+    subject: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    totalMarks: {
+      type: Number,
+      required: true
+    },
+    duration: {
+      type: Number, // in minutes
+      required: true
+    },
+    examDate: {
+      type: Date,
+      required: true
+    }
   },
-  subject: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  totalMarks: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  duration: {
-    type: DataTypes.INTEGER, // in minutes
-    allowNull: false
-  },
-  examDate: {
-    type: DataTypes.DATE,
-    allowNull: false
+  {
+    timestamps: true 
   }
-}, {
-  timestamps: true
-});
+);
+
+const Exam = mongoose.model('Exam', examSchema);
 
 export default Exam;

@@ -1,6 +1,6 @@
 import Exam from "../models/exam.model.js";
 
-export const createExam = async (examData) => {
+export const createExamService = async (examData) => {
   return await Exam.create(examData);
 };
 

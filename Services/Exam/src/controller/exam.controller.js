@@ -1,9 +1,9 @@
-import * as examService from "../services/exam.service.js";
+import {createExamService} from "../services/exam.service.js";
 import Exam from '../models/exam.model.js'
 
 export const createExam = async (req, res) => {
   try {
-    const exam = await examService.createExam(req.body);
+    const exam = await createExamService(req.body);
     res.status(201).json({ success: true, data: exam });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
