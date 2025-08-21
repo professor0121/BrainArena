@@ -1,6 +1,4 @@
-// src/middlewares/adminMiddleware.js
-import { publish, consume } from '../services/rabbit.js';
-import { randomUUID } from 'crypto';
+import { sendRpcMessage } from '../services/rabbitmq.service.js';
 
 export const adminMiddleware = async (req, res, next) => {
   try {
@@ -9,30 +7,17 @@ export const adminMiddleware = async (req, res, next) => {
       return res.status(401).json({ message: 'Unauthorized: Token missing' });
     }
 
-    const correlationId = randomUUID();
-    const replyQueue = 'auth_response_queue';
-
-    const responsePromise = new Promise((resolve, reject) => {
-      consume(replyQueue, (msg) => {
-        if (msg.correlationId === correlationId) {
-          resolve(msg);
-        }
-      });
-      setTimeout(() => reject(new Error('Auth timeout')), 5000);
-    });
-
-    publish('auth_request_queue', { token, correlationId, replyQueue });
-
-    const result = await responsePromise;
-
-    if (!result.valid || result.role !== 'admin') {
-      return res.status(403).json({ message: 'Forbidden: Admin access required' });
+    // Ask Auth Server to verify
+    const response = await sendRpcMessage('verify_admin_token', { token });
+    console.log("Auth Server Response:", response);
+    if (!response.success) {
+      return res.status(401).json({ message: response.message || 'Unauthorized' });
     }
 
-    req.admin = result.admin;
+    req.admin = response.admin; // attach admin data to request
     next();
   } catch (err) {
-    console.error('Admin middleware error:', err.message);
-    res.status(401).json({ message: 'Unauthorized: Invalid token' });
+    console.error('Error in adminMiddleware:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };
