@@ -1,29 +1,36 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../config/db.js";
+import mongoose from "mongoose";
 
-const Question = sequelize.define("Question", {
+const questionSchema = new mongoose.Schema({
+  createdBy:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Admin",
+    required: true
+  },
   examId: {
-    type: DataTypes.INTEGER, // comes from Exam Service
-    allowNull: false,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Exam",
+    required: true
   },
   questionText: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: String,
+    required: true
   },
   options: {
-    type: DataTypes.JSON, // store options in array format
-    allowNull: false,
+    type: [String],
+    required: true
   },
   correctAnswer: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: String,
+    required: true
   },
   marks: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+    type: Number,
+    required: true
   }
 }, {
   timestamps: true
 });
+
+const Question = mongoose.model("Question", questionSchema);
 
 export default Question;
