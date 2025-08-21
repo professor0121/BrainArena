@@ -33,15 +33,16 @@ export const login = async (req, res) => {
 };
 
 export const me= async(req,res)=>{
-    const {email}=req.body;
-    const user=await meService(email);
-    if(!user) return res.status(400).json({message:"not found"})
-    return res.status(200).json(user)
+    const userId = req.user.id;
+    const user = await meService(userId);
+    console.log("User ID:", user);
+    delete user.password; // Remove password from response
+    res.status(200).json({user:user});
 }
 
 export const updateUser = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id= req.user.id;
     const { name, email } = req.body;
 
     const updatedUser = await updateUserService(id, { name, email });
@@ -62,7 +63,7 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    const { id } = req.params;
+    const  id  = req.user.id;
 
     const deletedUser = await deleteUserService(id);
 

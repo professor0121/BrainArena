@@ -26,15 +26,15 @@ export const createAdminService = async ({ name, email, password }) => {
 };
 
 export const loginAdminService = async (email, password) => {
-  const user = await getAdminByEmail(email);
-  if (!user) throw new Error("Invalid credentials");
+  const admin = await getAdminByEmail(email);
+  if (!admin) throw new Error("Invalid credentials");
 
-  const isMatch = await comparePassword(password, user.password);
+  const isMatch = await comparePassword(password, admin.password);
   if (!isMatch) throw new Error("Invalid credentials");
 
-  const token = generateToken({ id: user._id });
-  delete user.password;
-  return { token, user };
+  const token = generateToken({ id: admin._id });
+  delete admin.password;
+  return { token, admin };
 };
 
 
