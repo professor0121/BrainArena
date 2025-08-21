@@ -1,4 +1,4 @@
-import { createUser as createUserDAO, getUserByEmail,updateUserById } from "../dao/auth.dao.js";
+import { createUser as createUserDAO, getUserByEmail,getUserById,updateUserById } from "../dao/auth.dao.js";
 import { hashPassword,comparePassword } from "../utils/password.util.js";
 import { generateToken } from "../utils/jwt.util.js";
 /**
@@ -40,8 +40,8 @@ export const loginUserService = async (email, password) => {
   return { token, user };
 };
 
-export const meService=async(email)=>{
-  return await getUserByEmail(email);
+export const meService=async(userId)=>{
+  return await getUserById(userId);
 }
 
 
