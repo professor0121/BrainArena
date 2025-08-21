@@ -27,18 +27,8 @@ async function publishToQueue(queueName, data) {
     channel.sendToQueue(queueName, Buffer.from(data));
 }
 
-export async function consume(queue, callback) {
-  const ch = await connectRabbit();
-  await ch.assertQueue(queue, { durable: false });
-  ch.consume(queue, (msg) => {
-    callback(JSON.parse(msg.content.toString()));
-    ch.ack(msg);
-  });
-}
-
 export default {
     subscribeToQueue,
     publishToQueue,
     connect,
-    consume
 };
