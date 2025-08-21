@@ -3,9 +3,15 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import connectDB from "./config/db.config.js";
+import { connectRabbitMQ } from "./services/rabbitmq.service.js";
+import {startAuthConsumer} from "./consumers/verifyAdmin.js";
+import {startAuthUserConsumer} from "./consumers/verifyUser.js";
 
 const app = express();
 connectDB();
+connectRabbitMQ();
+startAuthConsumer();
+startAuthUserConsumer();
 
 app.use(cors());
 app.use(express.json());
