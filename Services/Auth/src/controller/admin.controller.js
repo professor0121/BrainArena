@@ -32,8 +32,8 @@ export const login = async (req, res) => {
 };
 
 export const me= async(req,res)=>{
-    const {email}=req.body;
-    const admin=await getAdminService(email);
+    const adminId = req.admin.id;
+    const admin=await getAdminService(adminId);
     if(!admin) return res.status(400).json({message:"not found"})
-    return res.status(200).json(admin)
+    return res.status(200).json({admin:admin})
 }
