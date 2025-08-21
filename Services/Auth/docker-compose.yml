@@ -1,15 +1,26 @@
-version: "3.8"
+version: "3.9"
+
 services:
-  postgres:
-    image: postgres:15
-    container_name: brainarena_postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: brainarena_auth
+  exam-app:
+    build: .
+    container_name: exam_app
+    restart: always
     ports:
-      - "5432:5432"
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb+srv://abhishekakmadquick:SiaP6iFYzm2YgjDl@exam.0jhqtth.mongodb.net/exam?retryWrites=true&w=majority&appName=exam
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6
+    container_name: exam_mongo
+    restart: always
+    ports:
+      - "27017:27017"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mongo_data:/data/db
+
 volumes:
-  pgdata:
+  mongo_data:
