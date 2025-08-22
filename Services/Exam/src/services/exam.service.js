@@ -1,21 +1,21 @@
-import Exam from "../models/exam.model.js";
+import { createExamDao ,getAllExamsDao,getExamByIdDao,updateExamDao,deleteExamDao} from "../dao/exam.dao.js";
 
 export const createExamService = async (examData) => {
-  return await Exam.create(examData);
+  return await createExamDao(examData);
 };
 
-export const getAllExams = async () => {
-  return await Exam.findAll();
+export const getAllExamsService = async () => {
+  return await getAllExamsDao();
 };
 
-export const getExamById = async (id) => {
-  return await Exam.findByPk(id);
+export const getExamByIdService = async (id) => {
+  return await getExamByIdDao(id);
 };
 
-export const updateExam = async (id, data) => {
-  return await Exam.update(data, { where: { id } });
+export const updateExamService = async (id, data) => {
+  return await updateExamDao(id, data);
 };
 
-export const deleteExam = async (id) => {
-  return await Exam.destroy({ where: { id } });
+export const deleteExamService = async (id) => {
+  return await deleteExamDao(id);
 };

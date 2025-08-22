@@ -1,26 +1,15 @@
-import { Op } from "sequelize";
-import Exam from "../models/exam.model.js";
-import { getAllExams } from "../services/exam.service.js";
+
+import { getAllExamsService,getExamByIdService } from "../services/exam.service.js";
 
 // Get all upcoming exams
 export const getUpcomingExams = async (req, res) => {
   try {
-    const { subject } = req.query; // optional filter
+    const currentDate = new Date();
+    const exams = await getAllExamsService();
 
-    const whereClause = {
-      examDate: { [Op.gte]: new Date() }, // only future or today
-    };
+    const upcomingExams = exams.filter(exam => new Date(exam.examDate) >= currentDate);
 
-    if (subject) {
-      whereClause.subject = subject;
-    }
-
-    const exams = await Exam.findAll({
-      where: whereClause,
-      order: [["examDate", "ASC"]],
-    });
-
-    res.status(200).json(exams);
+    res.status(200).json(upcomingExams);
   } catch (error) {
     console.error("Error fetching upcoming exams:", error);
     res.status(500).json({ error: "Failed to fetch upcoming exams" });
@@ -31,7 +20,7 @@ export const getUpcomingExams = async (req, res) => {
 export const getExamDetails = async (req, res) => {
   try {
     const { id } = req.params;
-    const exam = await Exam.findByPk(id);
+    const exam = await getExamByIdService(id);
 
     if (!exam) {
       return res.status(404).json({ error: "Exam not found" });
@@ -46,6 +35,6 @@ export const getExamDetails = async (req, res) => {
 
 
 export const getExam=async(req,res)=>{
-    const exam=getAllExams();
+    const exam=getAllExamsService();
     res.status(200).json(exam)
 }
