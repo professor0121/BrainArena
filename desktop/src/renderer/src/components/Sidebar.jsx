@@ -8,7 +8,7 @@ const Sidebar = ({ children }) => {
   const navigationMenu = [
     { className: "", link: "/", icon: "🏠", title: "Home" },
     { className: "", link: "/dashboard", icon: "📊", title: "Dashboard" },
-    { className: "", link: "/orders", icon: "🛒", title: "Order" },
+    { className: "", link: "/exams", icon: "🛒", title: "Exams" },
     { className: "", link: "/activity", icon: "📈", title: "Activity" },
     { className: "", link: "/users", icon: "👤", title: "User" },
     { className: "", link: "/settings", icon: "⚙️", title: "Settings" },
@@ -17,7 +17,7 @@ const Sidebar = ({ children }) => {
   return (
     <aside className="w-64 h-screen bg-transparent text-white flex flex-col p-4 border-r border-gray-700">
       {/* App Name */}
-      <div className="text-lg font-bold mb-6">
+      <div className="text-lg font-bold mb-6">  
         {appName || "My App"}
       </div>
 
