@@ -1,10 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectAdmin } from '../redux/slices/authSlice'
 
 const Sidebar = ({ children }) => {
-  const appName = import.meta.env.VITE_APP_NAME // ✅ Works with Vite
 
+  const admin = useSelector(selectAdmin)
+console.log(admin)
   const navigationMenu = [
     { className: "", link: "/", icon: "🏠", title: "Home" },
     { className: "", link: "/dashboard", icon: "📊", title: "Dashboard" },
@@ -18,7 +21,7 @@ const Sidebar = ({ children }) => {
     <aside className="w-64 h-screen bg-transparent text-white flex flex-col p-4 border-r border-gray-700">
       {/* App Name */}
       <div className="text-lg font-bold mb-6">  
-        {appName || "My App"}
+        My App
       </div>
 
       {/* Navigation */}

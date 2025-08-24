@@ -6,6 +6,7 @@
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "productName": "My Desktop App",
+  "proxy": "http://localhost:3000",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
@@ -23,6 +24,7 @@
     "@electron-toolkit/utils": "^4.0.0",
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/vite": "^4.1.11",
+    "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
     "dotenv": "^17.2.1",
     "electron-updater": "^6.3.9",

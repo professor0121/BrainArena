@@ -17,5 +17,10 @@ export default defineConfig({
       }
     },
     plugins: [react()]
+  },
+  server: {
+    proxy: {
+      '/v1': 'http://localhost:3000'
+    }
   }
 })
