@@ -24,7 +24,7 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     console.log(email,password)
     const { token, admin } = await loginAdminService(email, password);
-
+    res.cookie("token", token, { httpOnly: true });
     res.json({ token, admin });
   } catch (error) {
     res.status(400).json({ message: error.message });
