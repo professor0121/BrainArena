@@ -9,9 +9,9 @@ const Sidebar = ({ children }) => {
   const admin = useSelector(selectAdmin)
 console.log(admin)
   const navigationMenu = [
-    { className: "", link: "/", icon: "🏠", title: "Home" },
+    { className: "", link: "/home", icon: "🏠", title: "Home" },
     { className: "", link: "/dashboard", icon: "📊", title: "Dashboard" },
-    { className: "", link: "/exams", icon: "🛒", title: "Exams" },
+    { className: "", link: "/exams", icon: "🛒", title: "Create Exams" },
     { className: "", link: "/activity", icon: "📈", title: "Activity" },
     { className: "", link: "/users", icon: "👤", title: "User" },
     { className: "", link: "/settings", icon: "⚙️", title: "Settings" },

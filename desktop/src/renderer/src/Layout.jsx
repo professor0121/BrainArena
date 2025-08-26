@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
+import { Outlet } from 'react-router-dom'
 
 const Layout = ({ children }) => {
   return (
@@ -9,7 +10,7 @@ const Layout = ({ children }) => {
       <Sidebar />
       <main className="flex-1 p-4">
         <Header />
-        {children}
+        <Outlet />
       </main>
     </div>
   )

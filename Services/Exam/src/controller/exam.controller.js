@@ -1,6 +1,7 @@
 import {createExamService, getAllExamsService,deleteExamService,updateExamService,getExamByIdService} from "../services/exam.service.js";
 
 export const createExam = async (req, res) => {
+  console.log("Request Body:", req.body); // Debugging line
   try {
     const exam = await createExamService(req.body);
     res.status(201).json({ success: true, data: exam });

@@ -6,7 +6,7 @@
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "productName": "My Desktop App",
-  "proxy": "http://localhost:3000",
+  "proxy": ["http://localhost:3000","http://localhost:3002","http://localhost:3003","http://localhost:3004"],
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
