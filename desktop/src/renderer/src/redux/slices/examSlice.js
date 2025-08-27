@@ -7,7 +7,7 @@ export const createExam = createAsyncThunk(
   "exam/createExam",
   async (examData, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post(`${SERVICES.ADMIN_EXAM}/admin/exam`, examData);
+      const response = await axiosInstance.post(`/exams`, examData);
       console.log(response.data);
       return response.data;
     } catch (error) {

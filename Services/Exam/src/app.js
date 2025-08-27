@@ -11,16 +11,24 @@ import r from "../../../Gateway/src/routes/route.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: "*",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    }
+));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 connectDB();
 connectRabbitMQ();
 
-// app.use((req, res, next) => {
-//   console.log("Request Body:", req.body);
-//   next();
-// });
-app.use("/admin", adminMiddleware, adminExamRoutes);
+app.use((req, res, next) => {
+  console.log("fdfdfdfdfdfRequest Body:", req.body);
+  next();
+});
+app.use("/",  adminExamRoutes);
 app.use("/student", userMiddleware, studentExamRoutes);
 
 
