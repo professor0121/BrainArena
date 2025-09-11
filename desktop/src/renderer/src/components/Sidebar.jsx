@@ -12,16 +12,19 @@ console.log(admin)
     { className: "", link: "/home", icon: "🏠", title: "Home" },
     { className: "", link: "/dashboard", icon: "📊", title: "Dashboard" },
     { className: "", link: "/exams", icon: "🛒", title: "Create Exams" },
+    { className: "", link: "/allExams", icon: "🛒", title: "See All Exams" },
     { className: "", link: "/activity", icon: "📈", title: "Activity" },
     { className: "", link: "/users", icon: "👤", title: "User" },
+    { className: "", link: "/home", icon: "⚙️", title: "Schedule Meeting" },
     { className: "", link: "/settings", icon: "⚙️", title: "Settings" },
+
   ]
 
   return (
     <aside className="w-64 h-screen bg-transparent text-white flex flex-col p-4 border-r border-gray-700">
       {/* App Name */}
       <div className="text-lg font-bold mb-6">  
-        My App
+        BrainArena
       </div>
 
       {/* Navigation */}
