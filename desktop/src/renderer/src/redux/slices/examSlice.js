@@ -6,6 +6,7 @@ import { SERVICES } from "../../api/services";
 export const createExam = createAsyncThunk(
   "exam/createExam",
   async (examData, { rejectWithValue }) => {
+  
     try {
       const response = await axiosInstance.post(`/exams`, examData);
       console.log(response.data);

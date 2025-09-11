@@ -71,7 +71,7 @@ const Exams = () => {
           required
         />
         <input
-          type="date"
+          type="text"
           name="examDate"
           value={form.examDate}
           onChange={handleChange}
