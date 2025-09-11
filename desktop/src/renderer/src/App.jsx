@@ -10,6 +10,7 @@ import Login from './Pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useSelector } from 'react-redux'
 import { selectIsAuthenticated } from './redux/slices/authSlice'
+import AllExams from './Pages/AllExams'
 
 const App = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/activity" element={<Activity />} />
         <Route path="/users" element={<Users />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/allExams" element={<AllExams/>}/>
       </Route>
     </Routes>
   );
